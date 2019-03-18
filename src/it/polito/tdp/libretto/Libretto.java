@@ -30,4 +30,24 @@ public class Libretto {
 	
 		voti.add(v);  //DELEGO alla lista l'operazione di aggiunta
 	}
+	
+	//public void StampaVoti(int voto) {}   //stampa direttamente i voti
+	
+	//public String StampaVoti2(int voto) {}	//classe Libretto costruisce una stringa con i voti da stampare
+											//ma non li stampa 
+	
+	//Conviene usare il terzo metodo: separo l'operazione di ricerca dalla formattazione del risultato
+	
+	public List<Voto> cercaVoti(int voto) {	//classe Libretto seleziona una lista che contiene solo i voti 
+		List<Voto> result = new ArrayList<Voto>();	//che corrispondono al criterio di ricerca
+	
+		for(Voto v : this.voti) {
+			if(v.getPunti() == voto) {
+				result.add(v);	//aggiungo alla lista un oggetto gia' presente, non ne sto creando di nuovi
+								// la lista contiene i riferimenti agli oggetti
+			}
+		}
+		return result;   //restituisco la lista al chiamante
+	}
+	
 }
