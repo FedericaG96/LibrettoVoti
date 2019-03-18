@@ -35,4 +35,11 @@ public class Voto {
 		this.data = data;
 	}
 
+	//tasto destro, source, Generate toString()
+	@Override
+	public String toString() {
+		return String.format("Voto [voto=%s, corso=%s, data=%s]", voto, corso, data);
+	}
+	
+	
 }

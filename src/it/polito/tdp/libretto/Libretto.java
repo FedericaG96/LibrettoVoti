@@ -16,8 +16,18 @@ public class Libretto {
 	public void add(int voto, String corso, LocalDate data) {
 		
 	}
+	
+	/**
+	 * Aggiunge un nuovo voto al libretto
+	 * 
+	 * @param v il {@link Voto} da aggiungere
+	 */
 	public void add(Voto v) {
 		//qualunque sia la struttura della classe voto, questo metodo funziona
-		// --> minore numero di dipendeze tra le classi
+		// Per aggiungere un oggetto al libretto non c'e' bisogno di sapere come e' fatto il voto
+		// --> bisogna cercare di avere il minore numero di dipendenze tra le classi
+		// --> massimizzare il disaccoppiamento tra gli oggetti
+	
+		voti.add(v);  //DELEGO alla lista l'operazione di aggiunta
 	}
 }
