@@ -38,6 +38,12 @@ public class Libretto {
 	
 	//Conviene usare il terzo metodo: separo l'operazione di ricerca dalla formattazione del risultato
 	
+	/**
+	 * Seleziona il sottoinsieme di voti che hanno il punteggio specificato
+	 * 
+	 * @param punti punteggio da ricerca
+	 * @return lista di {@link Voto} aventi quel punteggio (eventualmente vuota)
+	 */
 	public List<Voto> cercaVoti(int voto) {	//classe Libretto seleziona una lista che contiene solo i voti 
 		List<Voto> result = new ArrayList<Voto>();	//che corrispondono al criterio di ricerca
 	
@@ -48,6 +54,21 @@ public class Libretto {
 			}
 		}
 		return result;   //restituisco la lista al chiamante
+	}
+	
+	/**
+	 * Ricerca un {@link Voto} relativo al corso di cui è specificato il nome
+	 *
+	 * @param nomeEsame nome del corso da ricercare
+	 * @return il {@link Voto} corrispondente, oppure {@code null} se non esistente
+	 */
+	public Voto cercaEsame(String nomeEsame) {
+		for(Voto v : this.voti) {
+			if(v.getCorso().equals(nomeEsame)) {
+				return v;
+			}
+		}
+		return null;
 	}
 	
 }
