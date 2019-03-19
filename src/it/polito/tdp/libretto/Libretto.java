@@ -12,23 +12,21 @@ public class Libretto {
 	public Libretto() {
 		this.voti = new ArrayList<Voto>();   //riferimento a un oggetto ArrayList
 	}
-	
-	public void add(int voto, String corso, LocalDate data) {
 		
-	}
-	
 	/**
 	 * Aggiunge un nuovo voto al libretto
 	 * 
 	 * @param v il {@link Voto} da aggiungere
+	 * @return 	   {@code true} nel caso normale, {@code false }
 	 */
 	public void add(Voto v) {
-		//qualunque sia la struttura della classe voto, questo metodo funziona
-		// Per aggiungere un oggetto al libretto non c'e' bisogno di sapere come e' fatto il voto
-		// --> bisogna cercare di avere il minore numero di dipendenze tra le classi
-		// --> massimizzare il disaccoppiamento tra gli oggetti
-	
-		voti.add(v);  //DELEGO alla lista l'operazione di aggiunta
+		if(!this.esisteGiaVoto(v) && !this.votoConflitto(v)) {
+			voti.add(v);
+		}
+		else {
+			
+		}
+			
 	}
 	
 	//public void StampaVoti(int voto) {}   //stampa direttamente i voti
@@ -110,4 +108,29 @@ public class Libretto {
 	//		return false;
 	}
 	
+	/**
+	 * Mi dice se il {@link Voto} {@code v} è in conflitto con uno dei voti
+	 * esistenti. Se il voto non esiste, non c'è conflitto. Se esiste eh ha
+	 * un puntegio diverso, c'è conflitto.
+	 * 
+	 * @param v 
+	 * @return {@code true} se il voto esiste già ed è in conflitto
+	 * 		   {@code false} se il voto
+	 * 	       {@code }
+	 */
+	public boolean votoConflitto(Voto v) {
+		int pos = this.voti.indexOf(v);
+		if(pos == -1)
+			return false;
+		else {
+			if(v.getPunti() == this.voti.get(pos).getPunti())
+				return true;
+			else
+				return (v.getPunti() == this.voti.get(pos).getPunti());
+		}
+	}
+	
+	public String toString() {
+		return this.voti.toString();
+	}
 }
