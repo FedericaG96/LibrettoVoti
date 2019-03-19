@@ -63,12 +63,51 @@ public class Libretto {
 	 * @return il {@link Voto} corrispondente, oppure {@code null} se non esistente
 	 */
 	public Voto cercaEsame(String nomeEsame) {
-		for(Voto v : this.voti) {
-			if(v.getCorso().equals(nomeEsame)) {
-				return v;
-			}
+		//for(Voto v : this.voti) {
+		// if(v.getCorso().equals(nomeEsame)) {
+		//   return v;
+		//	}
+		//}
+		
+		Voto voto = new Voto(0,nomeEsame,null);
+		this.voti.indexOf(voto);//passo a indexof un oggetto parzialmente costruito, che serve solo come criterio di ricerca
+		int pos = this.voti.indexOf(voto);
+		if(pos == -1)
+			return null;
+		else 
+			return this.voti.get(pos);
+	}
+	
+	
+	/**
+	 * Dato un {@link Voto}, determina se esite già un voto
+	 * con uguale corso ed uguale punteggio
+	 * 
+	 * @param v
+	 * @return {@code true}, se ha trovato un corso e punteggio uguali, 
+	 * {@code false} se non ha trovato il corso, 
+	 * oppure l'ha trovato con un voto diverso
+	 */
+	public boolean esisteGiaVoto(Voto v) {
+		
+		int pos = this.voti.indexOf(v);
+		if(pos == -1)
+			return false;
+		else {
+			if(v.getPunti() ==this.voti.get(pos).getPunti())
+				return true;
+			else
+				return (v.getPunti() == this.voti.get(pos).getPunti());
 		}
-		return null;
+		
+		
+	//	Voto trovato = this.cercaEsame(v.getCorso());
+	//	if(trovato==null) 
+	//		return false;
+	//	if(trovato.getPunti()==v.getPunti())
+	//		return true;
+	//	else 
+	//		return false;
 	}
 	
 }
